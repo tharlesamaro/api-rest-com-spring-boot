@@ -8,11 +8,7 @@ public class IndexController {
 
     @GetMapping()
     public String get() {
-        return "GET Spring Boot";
+        return "API dos carros";
     }
 
-    @PostMapping("/login")
-    public String login(@RequestParam("login") String login, @RequestParam("senha") String senha) {
-        return "Login: " + login + ", senha: " + senha;
-    }
 }
