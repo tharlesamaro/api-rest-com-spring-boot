@@ -1,20 +1,28 @@
 package com.example.carros.api;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/")
 public class IndexController {
 
-    @GetMapping
-    public String hello() {
-        return "Hello Spring Boot";
+    @GetMapping()
+    public String get() {
+        return "GET Spring Boot";
     }
 
-    @GetMapping("/teste")
-    public String teste() {
-        return "Teste Spring Boot";
+    @PostMapping()
+    public String post() {
+        return "POST Spring Boot";
+    }
+
+    @PutMapping()
+    public String put() {
+        return "PUT Spring Boot";
+    }
+
+    @DeleteMapping()
+    public String delete() {
+        return "DELETE Spring Boot";
     }
 }
