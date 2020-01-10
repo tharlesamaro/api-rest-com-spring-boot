@@ -11,18 +11,8 @@ public class IndexController {
         return "GET Spring Boot";
     }
 
-    @PostMapping()
-    public String post() {
-        return "POST Spring Boot";
-    }
-
-    @PutMapping()
-    public String put() {
-        return "PUT Spring Boot";
-    }
-
-    @DeleteMapping()
-    public String delete() {
-        return "DELETE Spring Boot";
+    @GetMapping("/login")
+    public String login(@RequestParam("login") String login, @RequestParam("senha") String senha) {
+        return "Login: " + login + ", senha: " + senha;
     }
 }
