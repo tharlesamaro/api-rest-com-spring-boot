@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -53,11 +52,11 @@ public class CarroService {
         //throw new RuntimeException("Não foi possível atualizar o registro");
     }
 
-    public void delete(Long id) {
-        Assert.notNull(id, "Não foi possível deletar o registro");
-
+    public boolean delete(Long id) {
         if (getCarroById(id).isPresent()) {
             repository.deleteById(id);
+            return true;
         }
+        return false;
     }
 }
