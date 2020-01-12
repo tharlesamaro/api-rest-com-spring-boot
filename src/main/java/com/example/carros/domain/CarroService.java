@@ -34,7 +34,7 @@ public class CarroService {
         return CarroDTO.create(repository.save(carro));
     }
 
-    public Carro update(Carro carro, Long id) {
+    public CarroDTO update(Carro carro, Long id) {
         Assert.notNull(id, "Não foi possível atualizar o registro");
 
         Optional<Carro> optional = repository.findById(id);
@@ -46,10 +46,11 @@ public class CarroService {
 
             repository.save(db);
 
-            return db;
+            return CarroDTO.create(db);
         }
 
-        throw new RuntimeException("Não foi possível atualizar o registro");
+        return null;
+        //throw new RuntimeException("Não foi possível atualizar o registro");
     }
 
     public void delete(Long id) {
