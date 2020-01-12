@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.constraints.NotNull;
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,15 +31,6 @@ public class CarroController {
         Optional<CarroDTO> carro = service.getCarroById(id);
 
         return carro.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
-
-        /*return carro.isPresent() ?
-                ResponseEntity.ok(carro.get()) :
-                ResponseEntity.notFound().build();*/
-
-        /*if (carro.isPresent()) {
-            return ResponseEntity.ok(carro.get());
-        }
-        return ResponseEntity.notFound().build();*/
     }
 
     @GetMapping("/tipo/{tipo}")
@@ -50,20 +44,30 @@ public class CarroController {
     }
 
     @PostMapping
-    public String post(@RequestBody Carro carro) {
+    public ResponseEntity post(@RequestBody Carro carro) {
 
-        Carro car = service.insert(carro);
+        try {
+            CarroDTO car = service.insert(carro);
 
-        return "Carro salvo com sucesso. Id: " + car.getId();
+            URI location = getUri(car.getId());
+            return ResponseEntity.created(location).build();
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
-    /*@PutMapping("/{id}")
+    private URI getUri(Long id) {
+        return ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(id).toUri();
+    }
+
+    @PutMapping("/{id}")
     public String put(@PathVariable("id") Long id, @RequestBody Carro carro) {
 
         Carro car = service.update(carro, id);
 
         return "Carro atualizado com sucesso. Carro ID: " + car.getId();
-    }*/
+    }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") Long id) {

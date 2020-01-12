@@ -10,12 +10,6 @@ public class CarroDTO {
     private String nome;
     private String tipo;
 
-    /*public CarroDTO(Carro carro) {
-        this.id = carro.getId();
-        this.nome = carro.getNome();
-        this.tipo = carro.getTipo();
-    }*/
-
     public static CarroDTO create(Carro carro) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(carro, CarroDTO.class);
