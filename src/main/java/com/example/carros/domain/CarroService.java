@@ -22,7 +22,7 @@ public class CarroService {
         return repository.findById(id);
     }
 
-    public Iterable<Carro> getCarrosByTipo(String tipo) {
+    public List<Carro> getCarrosByTipo(String tipo) {
         return repository.findByTipo(tipo);
     }
 
