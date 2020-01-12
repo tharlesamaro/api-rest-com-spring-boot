@@ -60,4 +60,14 @@ public class CarroService {
             return db;
         }).orElseThrow(() -> new RuntimeException("Não foi possível atualizar o registro"));*/
     }
+
+    public void delete(Long id) {
+        Assert.notNull(id, "Não foi possível deletar o registro");
+
+        Optional<Carro> carro = getCarroById(id);
+
+        if (carro.isPresent()) {
+            repository.deleteById(id);
+        }
+    }
 }
