@@ -15,24 +15,36 @@ public class CarroController {
 
     @GetMapping()
     public Iterable<Carro> get() {
+
         return service.getCarros();
     }
 
     @GetMapping("/{id}")
     public Optional<Carro> get(@PathVariable("id") Long id) {
+
         return service.getCarroById(id);
     }
 
     @GetMapping("/tipo/{tipo}")
     public Iterable<Carro> getCarrosByTipo(@PathVariable("tipo") String tipo) {
+
         return service.getCarrosByTipo(tipo);
     }
 
     @PostMapping
     public String post(@RequestBody Carro carro) {
-        Carro car = service.save(carro);
+
+        Carro car = service.insert(carro);
 
         return "Carro salvo com sucesso. Id: " + car.getId();
+    }
+
+    @PutMapping("/{id}")
+    public String put(@PathVariable("id") Long id, @RequestBody Carro carro) {
+
+        Carro car = service.update(carro, id);
+
+        return "Carro atualizado com sucesso. Carro ID: " + car.getId();
     }
 
 }
