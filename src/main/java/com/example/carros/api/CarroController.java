@@ -3,6 +3,8 @@ package com.example.carros.api;
 import com.example.carros.domain.Carro;
 import com.example.carros.domain.CarroService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -14,9 +16,9 @@ public class CarroController {
     private CarroService service;
 
     @GetMapping()
-    public Iterable<Carro> get() {
-
-        return service.getCarros();
+    public ResponseEntity<Iterable<Carro>> get() {
+        return ResponseEntity.ok(service.getCarros());
+        //return new ResponseEntity<>(service.getCarros(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -53,7 +55,6 @@ public class CarroController {
         service.delete(id);
 
         return "Carro deletado com sucesso";
-
     }
 
 }
