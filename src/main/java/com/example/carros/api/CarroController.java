@@ -23,7 +23,6 @@ public class CarroController {
     @GetMapping()
     public ResponseEntity<List<CarroDTO>> get() {
         return ResponseEntity.ok(service.getCarros());
-        //return new ResponseEntity<>(service.getCarros(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
