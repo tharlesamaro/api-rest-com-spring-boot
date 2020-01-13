@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.jupiter.api.Assertions;
 
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
@@ -17,7 +18,7 @@ class CarrosApplicationTests {
     private CarroService service;
 
     @Test
-    public void inserirCarro() {
+    public void testInserirCarro() {
 
         Carro carro = new Carro();
         carro.setNome("Ferrari Teste");
@@ -40,8 +41,14 @@ class CarrosApplicationTests {
         Assertions.assertFalse(service.getCarroById(id).isPresent());
     }
 
+
+
     @Test
-    void contextLoads() {
-    }
+    public void testLista() {
+
+		List<CarroDTO> carros = service.getCarros();
+
+		Assertions.assertEquals(29, carros.size());
+	}
 
 }
