@@ -52,11 +52,7 @@ public class CarroService {
         //throw new RuntimeException("Não foi possível atualizar o registro");
     }
 
-    public boolean delete(Long id) {
-        if (getCarroById(id).isPresent()) {
+    public void delete(Long id) {
             repository.deleteById(id);
-            return true;
-        }
-        return false;
     }
 }
