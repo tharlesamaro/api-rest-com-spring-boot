@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
-class CarrosApplicationTests {
+class CarroServiceTests {
 
     @Autowired
     private CarroService service;
