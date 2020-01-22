@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .inMemoryAuthentication()
                 .passwordEncoder(encoder)
-                .withUser("tharles")
+                .withUser("user")
                 .password(encoder.encode("123456"))
                 .roles("USER")
                 .and()
